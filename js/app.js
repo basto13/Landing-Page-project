@@ -40,14 +40,6 @@ const sections = document.querySelectorAll('section');
 */
 
 // build the nav
-function findClick(event) {
-    event.preventDefault();
-    if (event.target.getAttribute("sectionLink")) {
-        document
-            .getElementById(`${event.target.getAttribute("sectionLink")}`)
-            .scrollIntoView({ behavior: 'smooth' });
-    }
-}
 
 function createNavbar(sections, navigation) {
     for (const section of sections) {
@@ -62,9 +54,16 @@ function createNavbar(sections, navigation) {
 }
 createNavbar(sections, navigation);
 
+//add smooth scroll feature
 
-
-
+function findClick(event) {
+    event.preventDefault();
+    if (event.target.getAttribute("sectionLink")) {
+        document
+            .getElementById(`${event.target.getAttribute("sectionLink")}`)
+            .scrollIntoView({ behavior: 'smooth' });
+    }
+}
 // Add class 'active' to section when near top of viewport
 
 // get function to check if section is in the view port
@@ -95,39 +94,6 @@ const changeActiveStatus = (sections) => {
 
 window.addEventListener('scroll', () => changeActiveStatus(sections));
 
-
-// Scroll to anchor ID using scrollTO event
-
-
-
-//     // findClick('click');
-
-//     const scrolling = () => {
-//         const links = document.querySelectorAll('.navbar__menu a');
-//         links.forEach(link => {
-//             link.addEventListener('click', () => {
-//                 for (i = 0; i < sections; i++) {
-//                     sections[i].addEventListener('click', sectionScroll(link))
-//                 }
-//             })
-//         })
-
-//     }
-// }
-// window.addEventListener('click', () => scrolling());
-
-// function scrollToElement(event){
-//     if(event.target.nodeName === 'A'){
-//         const sectionId = event.target.getAttribute('data-id');
-//         const section = document.getElementById(sectionId);
-//         section.scrollIntoView({behavior: "smooth"});
-//     }
-// }
-
-// const navBarList = document.getElementById('navbar__list')
-// navBarList.addEventListener('click', function(event){
-//     scrollToElement(event)
-// })
 
 /**
  * End Main Functions
