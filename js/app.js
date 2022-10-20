@@ -41,6 +41,7 @@ const sections = document.querySelectorAll('section');
 
 // build the nav
 
+
 function createNavbar(sections, navigation) {
     for (const section of sections) {
         const sectionName = section.getAttribute("data-nav");
@@ -64,7 +65,6 @@ function findClick(event) {
             .scrollIntoView({ behavior: 'smooth' });
     }
 }
-// Add class 'active' to section when near top of viewport
 
 // get function to check if section is in the view port
 
