@@ -70,9 +70,12 @@ function findClick(event) {
 
 var isInViewport = function (section) {
     var bounding = section.getBoundingClientRect();
+    console.log(bounding.top, section)
     return (
-        bounding.top >= 0 &&
-        bounding.left >= 0
+        bounding.top >= 100 &&
+        bounding.top < (window.innerHeight - 100) 
+        &&
+        bounding.bottom >= 200
     );
 };
 
@@ -82,8 +85,10 @@ const changeActiveStatus = (sections) => {
     for (const section of sections) {
         if (isInViewport(section)) {
             section.classList.add('your-active-class');
+            console.log(section, "section activated");
         } else {
             section.classList.remove('your-active-class');
+            console.log(section, "section deactivated");
         }
     }
 }
