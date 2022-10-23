@@ -55,8 +55,7 @@ function createNavbar(sections, navigation) {
 }
 createNavbar(sections, navigation);
 
-//add smooth scroll feature
-
+//add smooth scroll feature when clicked on the navbar section
 function findClick(event) {
     event.preventDefault();
     if (event.target.getAttribute("sectionLink")) {
@@ -66,34 +65,28 @@ function findClick(event) {
     }
 }
 
-// get function to check if section is in the view port
-
-var isInViewport = function (section) {
-    var bounding = section.getBoundingClientRect();
-    console.log(bounding.top, section)
-    return (
-        bounding.top >= 100 &&
-        bounding.top < (window.innerHeight - 100) 
-        &&
-        bounding.bottom >= 200
-    );
-};
-
-// function to change active status of the section
-
-const changeActiveStatus = (sections) => {
-    for (const section of sections) {
-        if (isInViewport(section)) {
-            section.classList.add('your-active-class');
-            console.log(section, "section activated");
-        } else {
-            section.classList.remove('your-active-class');
-            console.log(section, "section deactivated");
-        }
-    }
+//function to add active class to section
+function addActiveClass(section) {
+    section.classList.add('your-active-class')
 }
 
-//function to implement the change of active status of the section
+//function to remove active class to section
+function removeActiveClass(section) {
+    section.classList.remove('your-active-class')
+}
+
+// function to change active status of the section
+function changeActiveStatus(sections) {
+    sections.forEach((section) => {
+        // check-up if section is in the view port
+        var isInViewportSection = section.getBoundingClientRect();
+        if (isInViewportSection.top <= 150 && isInViewportSection.bottom >= 150) {
+            addActiveClass(section);
+        } else {
+            removeActiveClass(section);
+        }
+    });
+}
 
 window.addEventListener('scroll', () => changeActiveStatus(sections));
 
